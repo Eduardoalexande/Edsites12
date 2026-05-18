@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EdSites — Criação de Sites Profissionais em Angola</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --blue: #1B4FD8;
+  --blue2: #2563EB;
+  --blue3: #1E40AF;
+  --blue-dark: #0F2D6B;
+  --blue-light: #EFF6FF;
+  --blue-mid: #DBEAFE;
+  --white: #FFFFFF;
+  --light: #F8FAFC;
+  --black: #0F172A;
+  --text: #64748B;
+  --border: #E2E8F0;
+  --accent: #F59E0B;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 0 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  height: 70px;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 38px; height: 38px; background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.8rem; color: var(--white);
+  border-radius: 8px;
+}
+.logo-name { font-weight: 800; font-size: 1.05rem; color: var(--black); }
+.logo-name span { color: var(--blue); }
+.logo-tagline { font-size: 0.48rem; font-weight: 400; color: var(--text); letter-spacing: 2px; text-transform: uppercase; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { color: var(--text); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color 0.3s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta { background: var(--blue) !important; color: var(--white) !important; padding: 10px 22px; font-weight: 700 !important; border-radius: 6px; font-size: 0.78rem !important; }
+.nav-cta:hover { background: var(--blue2) !important; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--white);
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 70px; overflow: hidden;
+}
+.hero-left {
+  padding: 80px 60px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.hero-left::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom, var(--blue), transparent);
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--blue-light); color: var(--blue);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 6px 14px;
+  border-radius: 100px; margin-bottom: 28px; width: fit-content;
+  border: 1px solid var(--blue-mid);
+}
+.hero-pill::before { content: '●'; font-size: 0.4rem; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.08; color: var(--black); margin-bottom: 20px; }
+.hero h1 .blue { color: var(--blue); }
+.hero h1 .line { display: block; }
+.hero-desc { font-size: 0.95rem; color: var(--text); line-height: 1.8; margin-bottom: 40px; font-weight: 300; max-width: 460px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: var(--white); padding: 14px 30px; text-decoration: none; font-size: 0.82rem; font-weight: 700; border-radius: 6px; transition: all 0.3s; box-shadow: 0 4px 14px rgba(27,79,216,0.3); }
+.btn-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,79,216,0.4); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--border); color: var(--black); padding: 13px 30px; text-decoration: none; font-size: 0.82rem; font-weight: 600; border-radius: 6px; transition: all 0.3s; }
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+.hero-trust { display: flex; align-items: center; gap: 20px; }
+.hero-trust-avatars { display: flex; }
+.hero-trust-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--white); background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--white); margin-left: -10px; }
+.hero-trust-avatar:first-child { margin-left: 0; }
+.hero-trust-text { font-size: 0.78rem; color: var(--text); font-weight: 400; }
+.hero-trust-text strong { color: var(--black); font-weight: 700; }
+
+/* HERO RIGHT */
+.hero-right {
+  background: var(--blue-dark);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 48px;
+}
+.hero-right-pattern {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.06) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+.hero-right-glow { position: absolute; width: 400px; height: 400px; top: -100px; right: -100px; background: radial-gradient(circle, rgba(37,99,235,0.4) 0%, transparent 70%); border-radius: 50%; }
+.hero-card-wrap { position: relative; z-index: 1; width: 100%; max-width: 380px; }
+.hero-main-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+.hero-card-top { background: var(--blue); padding: 28px 28px 20px; }
+.hero-card-top-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+.hero-card-top-title { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+.hero-card-body { padding: 24px 28px; }
+.hero-card-stat { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.hero-card-stat:last-child { border-bottom: none; }
+.hero-card-stat-label { font-size: 0.78rem; color: var(--text); font-weight: 400; }
+.hero-card-stat-val { font-size: 0.88rem; font-weight: 700; color: var(--black); }
+.hero-card-stat-val.green { color: #16A34A; }
+.hero-card-stat-val.blue { color: var(--blue); }
+.hero-badge-float { position: absolute; bottom: -16px; right: -16px; background: var(--accent); color: var(--black); border-radius: 12px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(245,158,11,0.3); }
+.hero-badge-float-num { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+.hero-badge-float-label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* STRIP */
+.strip { background: var(--blue); padding: 16px 60px; }
+.strip-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.strip-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 400; }
+.strip-item strong { color: var(--white); font-weight: 700; }
+.strip-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+/* SECTIONS */
+.sec-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.sec-tag::before { content: ''; width: 18px; height: 2px; background: var(--blue); border-radius: 2px; }
+.sec-title { font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 800; line-height: 1.15; color: var(--black); margin-bottom: 16px; }
+.sec-title .blue { color: var(--blue); }
+.sec-desc { font-size: 0.88rem; color: var(--text); line-height: 1.85; font-weight: 300; }
+
+/* SERVICOS */
+.servicos { padding: 100px 60px; background: var(--white); }
+.servicos-inner { max-width: 1200px; margin: 0 auto; }
+.servicos-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 40px; }
+.servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.serv-card { border: 1px solid var(--border); border-radius: 12px; padding: 36px 28px; transition: all 0.4s; position: relative; overflow: hidden; background: var(--white); }
+.serv-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; border-radius: 12px 12px 0 0; }
+.serv-card:hover { border-color: var(--blue-mid); box-shadow: 0 12px 40px rgba(27,79,216,0.1); transform: translateY(-4px); }
+.serv-card:hover::before { transform: scaleX(1); }
+.serv-icon-wrap { width: 52px; height: 52px; background: var(--blue-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 20px; }
+.serv-num { font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.serv-title { font-size: 1rem; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+.serv-desc { font-size: 0.8rem; color: var(--text); line-height: 1.8; font-weight: 300; }
+.serv-price { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+.serv-price-val { font-size: 1.1rem; font-weight: 800; color: var(--blue); }
+.serv-price-label { font-size: 0.65rem; color: var(--text); font-weight: 400; display: block; margin-top: 2px; }
+
+/* PORTFOLIO */
+.portfolio { padding: 100px 60px; background: var(--light); }
+.portfolio-inner { max-width: 1200px; margin: 0 auto; }
+.portfolio-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.port-card { background: var(--white); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: all 0.4s; }
+.port-card:hover { border-color: var(--blue-mid); box-shadow: 0 12px 40px rgba(27,79,216,0.1); transform: translateY(-4px); }
+.port-preview { height: 180px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.port-preview-icon { font-size: 3rem; position: relative; z-index: 1; }
+.port-body { padding: 20px; }
+.port-cat { font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+.port-name { font-size: 0.9rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+.port-url { font-size: 0.72rem; color: var(--text); font-weight: 300; }
+.port-link { display: inline-flex; align-items: center; gap: 5px; color: var(--blue); font-size: 0.7rem; font-weight: 700; text-decoration: none; margin-top: 12px; transition: gap 0.3s; }
+.port-link:hover { gap: 8px; }
+
+/* PROCESSO */
+.processo { padding: 100px 60px; background: var(--white); }
+.processo-inner { max-width: 1200px; margin: 0 auto; }
+.processo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 56px; position: relative; }
+.processo-connector { position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(90deg, var(--blue) 0%, var(--blue-mid) 100%); z-index: 0; }
+.proc-step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+.proc-circle { width: 72px; height: 72px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.4rem; border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--blue), 0 8px 20px rgba(27,79,216,0.25); }
+.proc-num { font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.proc-title { font-size: 0.88rem; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.proc-desc { font-size: 0.75rem; color: var(--text); line-height: 1.7; font-weight: 300; }
+
+/* PORQUE */
+.porque { padding: 100px 60px; background: var(--light); }
+.porque-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.porque-visual { position: relative; }
+.porque-main-box { background: var(--blue); border-radius: 16px; padding: 48px; }
+.porque-main-box h3 { font-size: 1.6rem; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+.porque-main-box p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.7; font-weight: 300; }
+.porque-float { position: absolute; bottom: -20px; right: -20px; background: var(--white); border-radius: 12px; padding: 20px 24px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); border: 1px solid var(--border); }
+.porque-float-num { font-size: 2rem; font-weight: 900; color: var(--blue); line-height: 1; }
+.porque-float-label { font-size: 0.58rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+.porque-list { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+.porque-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: var(--white); border-radius: 8px; border: 1px solid var(--border); transition: all 0.3s; }
+.porque-item:hover { border-color: var(--blue-mid); box-shadow: 0 4px 16px rgba(27,79,216,0.08); }
+.porque-check { width: 28px; height: 28px; flex-shrink: 0; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--white); font-weight: 700; }
+.porque-item-title { font-size: 0.84rem; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.porque-item-desc { font-size: 0.75rem; color: var(--text); font-weight: 300; line-height: 1.5; }
+
+/* DEPOIMENTOS */
+.depoimentos { padding: 100px 60px; background: var(--white); }
+.dep-inner { max-width: 1200px; margin: 0 auto; }
+.dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+.dep-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px 28px; transition: all 0.4s; position: relative; }
+.dep-card::before { content: '"'; font-size: 4rem; color: var(--blue-mid); position: absolute; top: 12px; right: 20px; font-family: Georgia, serif; line-height: 1; }
+.dep-card:hover { border-color: var(--blue-mid); box-shadow: 0 8px 30px rgba(27,79,216,0.08); }
+.dep-stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 16px; }
+.dep-text { font-size: 0.82rem; color: var(--text); line-height: 1.8; font-style: italic; margin-bottom: 20px; font-weight: 300; }
+.dep-author { display: flex; align-items: center; gap: 10px; }
+.dep-avatar { width: 38px; height: 38px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--white); font-size: 0.8rem; flex-shrink: 0; }
+.dep-name { font-size: 0.82rem; font-weight: 700; color: var(--black); }
+.dep-role { font-size: 0.68rem; color: var(--text); }
+
+/* PRECOS */
+.precos { padding: 100px 60px; background: var(--light); }
+.precos-inner { max-width: 1200px; margin: 0 auto; }
+.precos-header { text-align: center; margin-bottom: 56px; }
+.precos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+.preco-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 40px 32px; position: relative; transition: all 0.3s; }
+.preco-card:hover { box-shadow: 0 12px 40px rgba(27,79,216,0.1); }
+.preco-card.popular { border-color: var(--blue); border-width: 2px; box-shadow: 0 12px 40px rgba(27,79,216,0.15); }
+.popular-tag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--blue); color: var(--white); font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; border-radius: 100px; white-space: nowrap; }
+.preco-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text); margin-bottom: 16px; }
+.preco-val { font-size: 2.2rem; font-weight: 900; color: var(--black); line-height: 1; margin-bottom: 4px; }
+.preco-card.popular .preco-val { color: var(--blue); }
+.preco-period { font-size: 0.7rem; color: var(--text); margin-bottom: 20px; font-weight: 300; }
+.preco-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+.preco-desc { font-size: 0.8rem; color: var(--text); line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
+.preco-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.preco-feat { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: var(--black); font-weight: 400; }
+.preco-feat-check { width: 18px; height: 18px; background: var(--blue-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+.preco-btn { display: block; text-align: center; padding: 13px; border-radius: 8px; text-decoration: none; font-size: 0.78rem; font-weight: 700; transition: all 0.3s; border: 1.5px solid var(--blue); color: var(--blue); }
+.preco-card.popular .preco-btn { background: var(--blue); color: var(--white); }
+.preco-btn:hover { background: var(--blue); color: var(--white); }
+
+/* CTA */
+.cta { padding: 100px 60px; background: var(--blue-dark); position: relative; overflow: hidden; text-align: center; }
+.cta-pattern { position: absolute; inset: 0; background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 28px 28px; }
+.cta-glow { position: absolute; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, transparent 70%); border-radius: 50%; }
+.cta-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.cta .sec-tag { justify-content: center; color: rgba(255,255,255,0.5); }
+.cta .sec-tag::before { background: rgba(255,255,255,0.3); }
+.cta .sec-title { color: var(--white); }
+.cta-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white { display: inline-flex; align-items: center; gap: 10px; background: var(--white); color: var(--blue); padding: 14px 34px; text-decoration: none; font-size: 0.82rem; font-weight: 800; border-radius: 8px; transition: all 0.3s; }
+.btn-white:hover { background: var(--blue-light); transform: translateY(-2px); }
+.btn-outline-white { display: inline-flex; align-items: center; gap: 10px; border: 1.5px solid rgba(255,255,255,0.3); color: var(--white); padding: 13px 34px; text-decoration: none; font-size: 0.82rem; font-weight: 500; border-radius: 8px; transition: all 0.3s; }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+
+/* CONTACTO */
+.contacto { padding: 100px 60px; background: var(--white); }
+.contacto-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+.contact-icon-box { width: 44px; height: 44px; background: var(--blue-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.contact-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+.contact-value { font-size: 0.85rem; color: var(--black); font-weight: 500; line-height: 1.6; }
+.form-box { background: var(--light); border-radius: 16px; padding: 40px; border: 1px solid var(--border); }
+.f-group { margin-bottom: 14px; }
+.f-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text); margin-bottom: 6px; display: block; }
+.f-input { width: 100%; padding: 11px 14px; border: 1px solid var(--border); background: var(--white); font-family: 'Poppins', sans-serif; font-size: 0.84rem; color: var(--black); outline: none; transition: border-color 0.3s; border-radius: 6px; }
+.f-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(27,79,216,0.08); }
+textarea.f-input { height: 90px; resize: none; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.f-submit { width: 100%; padding: 13px; background: var(--blue); color: var(--white); border: none; font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border-radius: 6px; margin-top: 4px; }
+.f-submit:hover { background: var(--blue2); box-shadow: 0 4px 14px rgba(27,79,216,0.3); }
+
+/* FOOTER */
+footer { background: var(--black); padding: 60px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand p { color: rgba(255,255,255,0.4); font-size: 0.78rem; line-height: 1.8; margin-top: 14px; font-weight: 300; max-width: 240px; }
+.footer-col h4 { font-size: 0.58rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.78rem; font-weight: 300; transition: color 0.3s; }
+.footer-col ul li a:hover { color: var(--blue); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.7rem; }
+.footer-bottom .blue { color: var(--blue); font-weight: 600; }
+
+/* WA */
+.wa { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 54px; height: 54px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 6px 20px rgba(37,211,102,0.4); animation: waF 3s ease-in-out infinite; }
+@keyframes waF { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 90px 20px 40px; }
+  .hero-left::before { display: none; }
+  .hero h1 { font-size: 2rem; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .hero-right { min-height: 320px; padding: 40px 20px 52px; }
+  .strip { padding: 14px 20px; overflow-x: auto; }
+  .strip-inner { gap: 20px; min-width: max-content; }
+  .servicos { padding: 60px 20px; }
+  .servicos-top { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .servicos-grid { grid-template-columns: 1fr; }
+  .portfolio { padding: 60px 20px; }
+  .portfolio-top { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .processo { padding: 60px 20px; }
+  .processo-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .processo-connector { display: none; }
+  .porque { padding: 60px 20px; }
+  .porque-inner { grid-template-columns: 1fr; gap: 48px; }
+  .porque-float { bottom: -12px; right: -8px; }
+  .depoimentos { padding: 60px 20px; }
+  .dep-grid { grid-template-columns: 1fr; }
+  .precos { padding: 60px 20px; }
+  .precos-grid { grid-template-columns: 1fr; }
+  .cta { padding: 60px 20px; }
+  .cta-btns { flex-direction: column; }
+  .btn-white, .btn-outline-white { width: 100%; justify-content: center; }
+  .contacto { padding: 60px 20px; }
+  .contacto-inner { grid-template-columns: 1fr; gap: 40px; }
+  .form-box { padding: 28px 20px; }
+  .f-row { grid-template-columns: 1fr; }
+  footer { padding: 40px 20px 28px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .wa { bottom: 20px; right: 20px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.8rem; }
+  .processo-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">Ed</div>
+    <div>
+      <div class="logo-name">Ed<span>Sites</span></div>
+      <div class="logo-tagline">Criação de Sites · Angola</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://wa.me/244925395740" class="nav-cta">💬 Pedir Orçamento</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-pill">Angola · Sites que convertem</div>
+    <h1>
+      <span class="line">O teu negócio</span>
+      <span class="line">merece um site</span>
+      <span class="line blue">profissional</span>
+    </h1>
+    <p class="hero-desc">Criamos sites modernos para negócios angolanos. Design exclusivo, entrega em 7 dias e preço justo. Mais clientes, mais vendas.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/244925395740" class="btn-primary">💬 Falar no WhatsApp</a>
+      <a href="#portfolio" class="btn-secondary">Ver Portfólio →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-avatars">
+        <div class="hero-trust-avatar">SA</div>
+        <div class="hero-trust-avatar">DC</div>
+        <div class="hero-trust-avatar">MA</div>
+        <div class="hero-trust-avatar" style="background:var(--blue3);">+</div>
+      </div>
+      <div class="hero-trust-text"><strong>+5 clientes</strong> já confiam na EdSites em Angola</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-pattern"></div>
+    <div class="hero-right-glow"></div>
+    <div class="hero-card-wrap">
+      <div class="hero-main-card">
+        <div class="hero-card-top">
+          <div class="hero-card-top-label">EdSites · Dashboard</div>
+          <div class="hero-card-top-title">O teu negócio online</div>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-card-stat">
+            <span class="hero-card-stat-label">Entrega do site</span>
+            <span class="hero-card-stat-val green">7 dias ✓</span>
+          </div>
+          <div class="hero-card-stat">
+            <span class="hero-card-stat-label">Aparece no Google</span>
+            <span class="hero-card-stat-val green">Sim ✓</span>
+          </div>
+          <div class="hero-card-stat">
+            <span class="hero-card-stat-label">Funciona no telemóvel</span>
+            <span class="hero-card-stat-val green">Sim ✓</span>
+          </div>
+          <div class="hero-card-stat">
+            <span class="hero-card-stat-label">Preço base</span>
+            <span class="hero-card-stat-val blue">30.000 Kz</span>
+          </div>
+          <div class="hero-card-stat">
+            <span class="hero-card-stat-label">Site 100% teu</span>
+            <span class="hero-card-stat-val green">Garantido ✓</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-badge-float">
+        <div class="hero-badge-float-num">🇦🇴</div>
+        <div class="hero-badge-float-label">Feito em Angola</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">✓ <strong>Design exclusivo</strong> para o teu negócio</div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">✓ Entrega em <strong>7 dias</strong></div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">✓ Site <strong>100% teu</strong> — acesso total</div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">✓ <strong>Suporte</strong> após entrega</div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">✓ Orçamento <strong>gratuito</strong></div>
+  </div>
+</div>
+
+<!-- SERVICOS -->
+<section id="servicos" class="servicos">
+  <div class="servicos-inner">
+    <div class="servicos-top">
+      <div>
+        <div class="sec-tag">O que Fazemos</div>
+        <h2 class="sec-title">Soluções <span class="blue">digitais</span> completas</h2>
+      </div>
+      <p style="color:var(--text); font-size:0.85rem; max-width:260px; font-weight:300; line-height:1.7;">Tudo o que o teu negócio precisa para ter uma presença online profissional.</p>
+    </div>
+    <div class="servicos-grid">
+      <div class="serv-card">
+        <div class="serv-icon-wrap">🌐</div>
+        <div class="serv-num">Serviço 01</div>
+        <div class="serv-title">Site Profissional</div>
+        <p class="serv-desc">Design moderno e exclusivo, adaptado ao teu negócio. Funciona no telemóvel, aparece no Google e impressiona os clientes.</p>
+        <div class="serv-price">
+          <div class="serv-price-val">30.000 Kz</div>
+          <span class="serv-price-label">Pagamento único · Entrega em 7 dias</span>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon-wrap">📧</div>
+        <div class="serv-num">Serviço 02</div>
+        <div class="serv-title">Email Corporativo</div>
+        <p class="serv-desc">Endereço profissional com o nome da tua empresa. Ex: geral@tuaempresa.com. Credibilidade e confiança para os teus clientes.</p>
+        <div class="serv-price">
+          <div class="serv-price-val">5.000 Kz</div>
+          <span class="serv-price-label">Por conta de email</span>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon-wrap">🔧</div>
+        <div class="serv-num">Serviço 03</div>
+        <div class="serv-title">Manutenção & Updates</div>
+        <p class="serv-desc">Actualizações de conteúdo, novos serviços, correcções e melhorias contínuas para manter o teu site sempre actual.</p>
+        <div class="serv-price">
+          <div class="serv-price-val">A consultar</div>
+          <span class="serv-price-label">Conforme necessidade</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio">
+  <div class="portfolio-inner">
+    <div class="portfolio-top">
+      <div>
+        <div class="sec-tag">Portfólio</div>
+        <h2 class="sec-title">Trabalhos <span class="blue">Realizados</span></h2>
+      </div>
+      <a href="https://wa.me/244925395740" class="btn-secondary" style="font-size:0.75rem; padding:10px 20px;">Ver todos →</a>
+    </div>
+    <div class="portfolio-grid">
+      <div class="port-card">
+        <div class="port-preview" style="background: linear-gradient(135deg, #1a1200, #3d2e00);">
+          <span class="port-preview-icon">🏢</span>
+        </div>
+        <div class="port-body">
+          <div class="port-cat">Consultoria & Capital Humano</div>
+          <div class="port-name">Mais Conceitos — Desenvolvimento Organizacional</div>
+          <div class="port-url">exemplo2-xi.vercel.app</div>
+          <a href="https://exemplo2-xi.vercel.app" target="_blank" class="port-link">Ver site →</a>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="port-preview" style="background: linear-gradient(135deg, #0a1628, #1a3a5c);">
+          <span class="port-preview-icon">🦷</span>
+        </div>
+        <div class="port-body">
+          <div class="port-cat">Saúde & Medicina</div>
+          <div class="port-name">Dra. Juliana — Odontologia Estética</div>
+          <div class="port-url">dr-juliana.vercel.app</div>
+          <a href="https://dr-juliana.vercel.app" target="_blank" class="port-link">Ver site →</a>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="port-preview" style="background: linear-gradient(135deg, #1a0a0a, #3d1515);">
+          <span class="port-preview-icon">🦷</span>
+        </div>
+        <div class="port-body">
+          <div class="port-cat">Saúde & Harmonização</div>
+          <div class="port-name">Patrícia Ebel — Harmonização Facial</div>
+          <div class="port-url">patricia-ebel.vercel.app</div>
+          <a href="https://patricia-ebel.vercel.app" target="_blank" class="port-link">Ver site →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="processo">
+  <div class="processo-inner">
+    <div class="sec-tag">Como Trabalhamos</div>
+    <h2 class="sec-title">4 passos para o teu site <span class="blue">estar online</span></h2>
+    <div class="processo-grid">
+      <div class="processo-connector"></div>
+      <div class="proc-step">
+        <div class="proc-circle">💬</div>
+        <div class="proc-num">Passo 01</div>
+        <div class="proc-title">Contacto</div>
+        <p class="proc-desc">Fala connosco pelo WhatsApp e conta-nos o teu negócio.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-circle">📋</div>
+        <div class="proc-num">Passo 02</div>
+        <div class="proc-title">Informações</div>
+        <p class="proc-desc">Pedimos logo, cores, serviços e fotos do teu negócio.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-circle">🎨</div>
+        <div class="proc-num">Passo 03</div>
+        <div class="proc-title">Criação</div>
+        <p class="proc-desc">Criamos o site em até 7 dias. Podes pedir ajustes.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-circle">🚀</div>
+        <div class="proc-num">Passo 04</div>
+        <div class="proc-title">Online!</div>
+        <p class="proc-desc">O site fica online e 100% no teu nome. Pronto a funcionar!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORQUE -->
+<section class="porque">
+  <div class="porque-inner">
+    <div class="porque-visual">
+      <div class="porque-main-box">
+        <h3>O teu site trabalha por ti 24h por dia</h3>
+        <p>Enquanto dormes, o teu site está a mostrar os teus serviços e a gerar clientes. É o melhor investimento para o teu negócio em Angola.</p>
+      </div>
+      <div class="porque-float">
+        <div class="porque-float-num">7 dias</div>
+        <div class="porque-float-label">Tempo de<br>entrega</div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-tag">Porque nos escolher</div>
+      <h2 class="sec-title">O que nos <span class="blue">diferencia</span></h2>
+      <div class="porque-list">
+        <div class="porque-item">
+          <div class="porque-check">✓</div>
+          <div>
+            <div class="porque-item-title">Entrega garantida em 7 dias</div>
+            <div class="porque-item-desc">Não esperas meses. Em 7 dias o teu site está online.</div>
+          </div>
+        </div>
+        <div class="porque-item">
+          <div class="porque-check">✓</div>
+          <div>
+            <div class="porque-item-title">Preço justo e transparente</div>
+            <div class="porque-item-desc">Sem taxas escondidas. Sabes exactamente o que pagas.</div>
+          </div>
+        </div>
+        <div class="porque-item">
+          <div class="porque-check">✓</div>
+          <div>
+            <div class="porque-item-title">Site 100% teu</div>
+            <div class="porque-item-desc">O código e domínio ficam no teu nome. Não dependes de nós.</div>
+          </div>
+        </div>
+        <div class="porque-item">
+          <div class="porque-check">✓</div>
+          <div>
+            <div class="porque-item-title">Suporte após entrega</div>
+            <div class="porque-item-desc">Estamos disponíveis para ajudar depois da entrega.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="dep-inner">
+    <div class="sec-tag">Depoimentos</div>
+    <h2 class="sec-title">O que dizem os nossos <span class="blue">clientes</span></h2>
+    <div class="dep-grid">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"O meu negócio ficou com um site incrível. Os clientes já chegam a dizer que viram o site. Foi o melhor investimento!"</p>
+        <div class="dep-author">
+          <div class="dep-avatar">SA</div>
+          <div>
+            <div class="dep-name">Sofia Andrade</div>
+            <div class="dep-role">Salão de Beleza · Luanda</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Profissional, rápido e o resultado ficou excelente. Entregaram em menos de 7 dias e fizeram tudo o que pedi!"</p>
+        <div class="dep-author">
+          <div class="dep-avatar">DC</div>
+          <div>
+            <div class="dep-name">Domingos Cambiri</div>
+            <div class="dep-role">Mais Conceitos · Luanda</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Fiz muitas perguntas antes de fechar e responderam a tudo com paciência. O site ficou exactamente como queria!"</p>
+        <div class="dep-author">
+          <div class="dep-avatar">MA</div>
+          <div>
+            <div class="dep-name">Maria Adelina</div>
+            <div class="dep-role">Empresa de Formação · Luanda</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECOS -->
+<section id="precos" class="precos">
+  <div class="precos-inner">
+    <div class="precos-header">
+      <div class="sec-tag" style="justify-content:center;">Preços</div>
+      <h2 class="sec-title">Investimento <span class="blue">claro e justo</span></h2>
+      <p class="sec-desc" style="max-width:440px; margin:0 auto;">Sem surpresas. Sabes exactamente o que pagas antes de começar.</p>
+    </div>
+    <div class="precos-grid">
+      <div class="preco-card">
+        <div class="preco-name">Básico</div>
+        <div class="preco-val">30.000 Kz</div>
+        <div class="preco-period">Pagamento único · Entrega em 7 dias</div>
+        <div class="preco-divider"></div>
+        <p class="preco-desc">Ideal para autónomos e pequenos negócios que querem presença online profissional.</p>
+        <div class="preco-feats">
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Site profissional completo</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Design exclusivo</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Funciona no telemóvel</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Aparece no Google</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Botão WhatsApp</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>1 email corporativo</div>
+        </div>
+        <a href="https://wa.me/244925395740" class="preco-btn">Começar →</a>
+      </div>
+      <div class="preco-card popular">
+        <div class="popular-tag">Mais Popular</div>
+        <div class="preco-name">Profissional</div>
+        <div class="preco-val">35.000 Kz</div>
+        <div class="preco-period">Pagamento único · Entrega em 7 dias</div>
+        <div class="preco-divider"></div>
+        <p class="preco-desc">Para empresas que precisam de mais recursos e uma presença digital mais completa.</p>
+        <div class="preco-feats">
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Tudo do plano Básico</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>3 emails corporativos</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Galeria de trabalhos</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Formulário de contacto</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Página de serviços detalhada</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Suporte prioritário</div>
+        </div>
+        <a href="https://wa.me/244925395740" class="preco-btn">Começar →</a>
+      </div>
+      <div class="preco-card">
+        <div class="preco-name">Personalizado</div>
+        <div class="preco-val">A consultar</div>
+        <div class="preco-period">Conforme necessidade</div>
+        <div class="preco-divider"></div>
+        <p class="preco-desc">Para projectos especiais com funcionalidades avançadas, lojas online ou portais.</p>
+        <div class="preco-feats">
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Funcionalidades à medida</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Loja online</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Portal de cursos</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Sistema de reservas</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Integrações avançadas</div>
+          <div class="preco-feat"><div class="preco-feat-check">✓</div>Suporte dedicado</div>
+        </div>
+        <a href="https://wa.me/244925395740" class="preco-btn">Falar Connosco →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-pattern"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="sec-tag">Começa hoje</div>
+    <h2 class="sec-title" style="color:white;">O teu negócio merece<br>estar online agora</h2>
+    <p class="cta-desc">Fala connosco no WhatsApp e em 7 dias o teu site está no ar. Orçamento gratuito!</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/244925395740" class="btn-white">💬 Falar no WhatsApp</a>
+      <a href="#portfolio" class="btn-outline-white">Ver Portfólio</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contacto">
+  <div class="contacto-inner">
+    <div>
+      <div class="sec-tag">Contacto</div>
+      <h2 class="sec-title">Fale <span class="blue">Connosco</span></h2>
+      <p class="sec-desc" style="margin-bottom:36px;">Respondemos rapidamente. Pode chamar, mandar mensagem ou preencher o formulário.</p>
+      <div class="contact-item">
+        <div class="contact-icon-box">📍</div>
+        <div>
+          <div class="contact-label">Localização</div>
+          <div class="contact-value">Luanda, Angola</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-box">📱</div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">(+244) 925 395 740</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon-box">⏰</div>
+        <div>
+          <div class="contact-label">Disponibilidade</div>
+          <div class="contact-value">Segunda a Sábado: 8h — 20h</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-box">
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label">Nome</label>
+          <input type="text" class="f-input" placeholder="O seu nome">
+        </div>
+        <div class="f-group">
+          <label class="f-label">Negócio</label>
+          <input type="text" class="f-input" placeholder="Nome do negócio">
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Tipo de Site</label>
+        <select class="f-input">
+          <option>Site Básico — 30.000 Kz</option>
+          <option>Site Profissional — 35.000 Kz</option>
+          <option>Projecto Personalizado</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Mensagem</label>
+        <textarea class="f-input" placeholder="Conta-nos mais sobre o teu negócio..."></textarea>
+      </div>
+      <button class="f-submit" onclick="window.open('https://wa.me/244925395740','_blank')">Pedir Orçamento Grátis →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-mark">Ed</div>
+        <div>
+          <div class="logo-name">Ed<span style="color:var(--blue);">Sites</span></div>
+          <div class="logo-tagline">Criação de Sites · Angola</div>
+        </div>
+      </a>
+      <p>Criamos sites profissionais para negócios angolanos. Design moderno, entrega rápida e preço justo.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#">Site Profissional</a></li>
+        <li><a href="#">Email Corporativo</a></li>
+        <li><a href="#">Manutenção</a></li>
+        <li><a href="#">Loja Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#precos">Preços</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="#">📍 Luanda, Angola</a></li>
+        <li><a href="#">📱 +244 925 395 740</a></li>
+        <li><a href="#">⏰ Seg–Sáb: 8h–20h</a></li>
+        <li><a href="https://wa.me/244925395740">💬 WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 EdSites · Todos os direitos reservados · Luanda, Angola</p>
+    <p class="blue">Feito com ♥ em Angola 🇦🇴</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/244925395740" class="wa" title="WhatsApp">💬</a>
+
+</body>
+</html>
